@@ -1,0 +1,14 @@
+
+
+input CreateUserInput{
+    email:String! 
+    password:String! 
+}
+type CreateUserResponse{
+    id:ID!
+    email:String! 
+    role:String! 
+}
+type Mutation{
+    createUser(input:CreateUserInput!): CreateUserResponse!
+}

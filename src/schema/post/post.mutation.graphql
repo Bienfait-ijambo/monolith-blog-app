@@ -1,0 +1,12 @@
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+type CreatePostResponse {
+  id: ID!
+  title: String!
+  content: String!
+}
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResponse!
+}

@@ -1,0 +1,24 @@
+version: "3"
+services:
+  node-app:
+    build:
+      context: .
+      args: 
+       NODE_ENV: development
+    volumes:
+      - ./:/micro-blog-app
+      - /micro-blog-app/node_modules
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=090912
+      - POSTGRES_DB=test_app
+      - POSTGRES_DB=5432
+
+    command: npm run dev
+  postgres:
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=090912
+
+ 

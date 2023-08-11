@@ -1,0 +1,44 @@
+input LoginInput{
+    email:String!
+    password:String!
+
+}
+
+
+type Tokens{
+    accessToken:String
+    refreshToken:String
+}
+
+type CreateUserLoginResponse{
+    id:Int
+    email:String
+    userName:String
+    image:String
+    role:String
+}
+
+
+
+
+
+
+type AuthReturnType{
+
+    user:CreateUserLoginResponse
+    tokens:Tokens
+}
+
+
+
+type Mutation{
+    loginUser(input:LoginInput!):AuthReturnType
+   
+}
+
+
+
+
+
+ 
+
