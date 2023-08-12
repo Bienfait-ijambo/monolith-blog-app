@@ -12,10 +12,10 @@ services:
       - NODE_ENV=development
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=090912
-      - POSTGRES_DB=test_app
-      - POSTGRES_DB=5432
+      - POSTGRES_DB=blog_app
+      - POSTGRES_PORT=5432
 
-    command: npm run dev
+    command: npm run apollo
   postgres:
     environment:
       - POSTGRES_USER=postgres

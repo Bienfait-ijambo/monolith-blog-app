@@ -12,7 +12,8 @@ export class CreateUserUseCase{
 
     async execute(input:CreateUserInput){
         const dto=new CreateUserDto(input);
-        const result=await this.repo.CreateUser(dto.getInput())
+        const data=await dto.getInput();
+        const result=await this.repo.CreateUser(data)
         return result
     }
 }

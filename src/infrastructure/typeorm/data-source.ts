@@ -3,34 +3,34 @@ import { DataSource } from "typeorm"
 import { User } from "../../api/User/repository/User"
 import { Post } from "../../api/Post/repository/Post"
 
-// export const AppDataSource = new DataSource({
-//     type: "postgres",
-//     host: "postgres",
-//     port: 5432,
-//     username: "postgres",
-//     password: "090912",
-//     database: "test_app",
-//     synchronize: true,
-//     logging: false,
-//     entities: [User],
-//     migrations: [],
-//     subscribers: [],
-// })
-
-
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "postgres",
     port: 5432,
     username: "postgres",
     password: "090912",
-    database: "test_app",
+    database: "blog_app",
     synchronize: true,
     logging: false,
     entities: [User,Post],
     migrations: [],
     subscribers: [],
 })
+
+
+// export const AppDataSource = new DataSource({
+//     type: "postgres",
+//     host: "localhost",
+//     port: 5432,
+//     username: "postgres",
+//     password: "090912",
+//     database: "test_app",
+//     synchronize: true,
+//     logging: false,
+//     entities: [User,Post],
+//     migrations: [],
+//     subscribers: [],
+// })
 
 
 // "POSTGRES_PASSWORD=090912",

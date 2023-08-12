@@ -1,6 +1,7 @@
 import { Required } from "../../../../shared/validators/Required"
 import { User } from "../../repository/User"
 import { CreateUserInput } from "../usecases/interfaces/userInterfaces"
+import { CreateUserPwd } from "./CreateUserPwd"
 import { UserDto } from "./UserDto"
 
 export enum UserRole{
@@ -27,9 +28,11 @@ export class CreateUserDto {
     }
 
 
-    getInput():User{
+    async getInput():Promise<User>{
 
-        return new User('',this.email, this.password, UserRole.VISITOR)
+        const hashPwd= await CreateUserPwd.hashPassword(this.password)
+
+        return new User('',this.email, hashPwd, UserRole.VISITOR)
       
     }
 

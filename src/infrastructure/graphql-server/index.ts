@@ -9,6 +9,7 @@ import { initDbConnection } from "../typeorm";
 import { typeDefs } from "../../schema";
 import { resolvers } from "../../resolvers";
 import { handleGraphqlError } from "./exceptions/handleGraphqlError";
+import { connectToRedis, runTask } from "./testing";
 
 
 
@@ -56,6 +57,10 @@ export const bootApp = async () => {
 
 
  await initDbConnection()
+
+//  await connectToRedis()
+
+// runTask()
   
 
   await new Promise<void>((resolve) =>

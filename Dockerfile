@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:16
 WORKDIR /micro-blog-app
 COPY package.json .
 
@@ -16,7 +16,7 @@ COPY . ./
 ENV PORT 4000
 EXPOSE $PORT
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "apollo"]
 
 
 
