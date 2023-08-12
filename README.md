@@ -1,4 +1,4 @@
-# This Awesome Project Build with TypeORM/Node/TS/Graphql
+## This Awesome Project Build with TypeORM/Node/TS/Graphql using clean architecture
 
 
 This  awsome project is dedicated to someone who wants to get his hands on Graphql,Ts,TypeORM and also its a boilerplate for someone who wants to get involve in cloud native application Docker/Docker-Swarm etc.
