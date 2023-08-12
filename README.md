@@ -3,7 +3,7 @@
 
 This  awsome project is dedicated to someone who wants to get his hands on Graphql,Ts,TypeORM and also its a boilerplate for someone who wants to get involve in cloud native application Docker/Docker-Swarm etc.
 
-The project has the following endpoint 
+The project has the following endpoint :
 
 # User enpoints :
 
