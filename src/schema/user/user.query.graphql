@@ -1,0 +1,10 @@
+
+type User{
+    id:Int!
+    userName:String
+    email:String!
+}
+
+type Query{
+    getUsers: [User]!
+}

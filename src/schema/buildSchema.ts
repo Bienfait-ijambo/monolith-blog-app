@@ -2,6 +2,9 @@ import { existsSync, writeFileSync } from "fs";
 import * as path from "path";
 import { returnTypeDefs, writeTypeDefs } from ".";
 
+const filePath = "C:/xampp/htdocs/projects/graphQL-projects/micro-blog-app/build/schema/typedefs.txt";
+
+
 function cleanTypeDefsFile(filePath) {
   writeFileSync(filePath, "");
 }
@@ -17,8 +20,7 @@ function checkFileExists(path) {
 
 function writeTypedefsToProduction() {
 
-  const filePath = "C:/xampp/htdocs/projects/graphQL-projects/micro-blog-app/build/schema/typedefs.txt";
-
+ 
   if (checkFileExists(filePath)) {
     //clean file into build folder
     cleanTypeDefsFile(filePath);
@@ -35,7 +37,7 @@ function writeTypedefsToProduction() {
 
 const build = async () => {
     //clean development file
-    await cleanTypeDefsFile(path.join(__dirname) + "/typedefs.txt");
+    await cleanTypeDefsFile(filePath);
     //write to development folder
     await writeTypeDefsFile(path.join(__dirname) + "/typedefs.txt");
     //write to production folder

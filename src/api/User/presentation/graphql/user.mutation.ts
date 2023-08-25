@@ -25,8 +25,6 @@ export const userMutations = {
   },
 
 
-  
-  
 
 };
 

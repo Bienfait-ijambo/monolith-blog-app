@@ -13,4 +13,6 @@ export interface IUserRepo{
     findUserByEmail(email:string): Promise<User>
 
     updateUser(input: updateUserInput): Promise<boolean> 
+
+    getUsers(): Promise<User[]> 
 }

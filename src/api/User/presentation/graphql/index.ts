@@ -1,9 +1,11 @@
 // import { authMutations } from "./auth.mutation"
 import { userMutations } from "./user.mutation"
+import { userQueries } from "./user.query"
 
 export const userResolvers={
  
-    Mutation:userMutations
+    Mutation:userMutations,
+    Query:userQueries
 }
 
 

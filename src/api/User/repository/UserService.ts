@@ -39,6 +39,20 @@ export class UserService implements IUserRepo {
   }
 
 
+  @catchError
+  async getUsers(): Promise<User[]> {
+    const result = await AppDataSource
+    .getRepository(User)
+    .createQueryBuilder("user")
+    .getMany()
+   
+   return result 
+  }
+
+
+
+ 
+
   
 }
 

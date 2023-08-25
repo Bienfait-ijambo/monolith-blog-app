@@ -51,7 +51,7 @@ mutation($input: CreateUserInput!){
 
 
 
-2. updateUser
+3. updateUser
 
 ```graphql
 mutation updateUser($input: UpdateUserInput!){
@@ -68,6 +68,22 @@ mutation updateUser($input: UpdateUserInput!){
 }
 
 ```
+
+4. getUsers
+
+```graphql
+query getUsers{
+  getUsers {
+    id
+    userName
+    email
+  }
+}
+
+```
+
+
+
 
 # Post endpoints :
 

@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "compile": "tsc",
-    "apollo": "nodemon --exec ts-node src/infrastructure/graphql-server/index.ts",
+    "apollo": "npm run build-schema && nodemon --exec ts-node src/infrastructure/graphql-server/index.ts",
     "apollo-start": "node build/infrastructure/graphql-server/index.js",
     "start": "npm run compile && node ./build/infrastructure/graphql-server/index.js",
     "dev": "nodemon ./build/infrastructure/graphql-server/index.js",
