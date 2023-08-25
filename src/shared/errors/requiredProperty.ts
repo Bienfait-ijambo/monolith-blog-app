@@ -9,7 +9,7 @@
 export const requiredPropertyError=(property:any,name:string)=>{
 
     if(typeof property==='undefined' || property==='') 
-    throw new  Error(`Veuillez entre la ${property}  `);
+    throw new  Error(` ${name}  is required `);
 }
 
 

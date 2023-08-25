@@ -8,3 +8,7 @@ export async function initDbConnection(){
     }).catch(error => console.log('db-error : ',error.message))
     
 }
+
+export async function closeDbConnection(){
+   await AppDataSource.destroy().catch(error => console.log('failed to close db connection !'))
+}

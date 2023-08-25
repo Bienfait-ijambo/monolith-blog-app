@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -57,10 +46,10 @@ var express4_1 = require("@apollo/server/express4");
 var express_1 = __importDefault(require("express"));
 var http_1 = __importDefault(require("http"));
 var cors_1 = __importDefault(require("cors"));
-var errors_1 = require("@apollo/server/errors");
 var typeorm_1 = require("../typeorm");
 var schema_2 = require("../../schema");
 var resolvers_1 = require("../../resolvers");
+var handleGraphqlError_1 = require("./exceptions/handleGraphqlError");
 var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.get("/api/v1/ready", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -84,16 +73,7 @@ var bootApp = function () { return __awaiter(void 0, void 0, void 0, function ()
                 httpServer = http_1.default.createServer(app);
                 server = new server_1.ApolloServer({
                     schema: schema,
-                    formatError: function (formattedError, error) {
-                        // Return a different error message
-                        if (formattedError.extensions.code ===
-                            errors_1.ApolloServerErrorCode.GRAPHQL_VALIDATION_FAILED) {
-                            return __assign(__assign({}, formattedError), { message: "Your query doesn't match the schema. Try double-checking it!" });
-                        }
-                        // Otherwise return the formatted error. This error can also
-                        // be manipulated in other ways, as long as it's returned.
-                        return formattedError;
-                    },
+                    formatError: handleGraphqlError_1.handleGraphqlError
                 });
                 return [4 /*yield*/, server.start()];
             case 1:
@@ -101,13 +81,20 @@ var bootApp = function () { return __awaiter(void 0, void 0, void 0, function ()
                 app.use("/graphql", (0, cors_1.default)({ origin: [] }), 
                 // json(),
                 (0, express4_1.expressMiddleware)(server));
-                return [4 /*yield*/, (0, typeorm_1.initDbConnection)()];
+                return [4 /*yield*/, (0, typeorm_1.initDbConnection)()
+                    //  await connectToRedis()
+                    // runTask()
+                ];
             case 2:
                 _a.sent();
+                //  await connectToRedis()
+                // runTask()
                 return [4 /*yield*/, new Promise(function (resolve) {
                         return httpServer.listen({ port: 4000 }, resolve);
                     })];
             case 3:
+                //  await connectToRedis()
+                // runTask()
                 _a.sent();
                 console.log("\uD83D\uDE80 Server ready at http://localhost:4000/graphql");
                 return [2 /*return*/];

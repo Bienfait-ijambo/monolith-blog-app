@@ -4,6 +4,8 @@ input CreateUserInput{
     email:String! 
     password:String! 
 }
+
+
 type CreateUserResponse{
     id:ID!
     email:String! 
@@ -12,3 +14,4 @@ type CreateUserResponse{
 type Mutation{
     createUser(input:CreateUserInput!): CreateUserResponse!
 }
+

@@ -9,43 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Post = void 0;
 var typeorm_1 = require("typeorm");
-var User = /** @class */ (function () {
-    function User(email, password, role) {
-        this.email = email;
-        this.password = password;
-        this.role = role;
+var Post = exports.Post = /** @class */ (function () {
+    function Post(title, content) {
+        this.title = title;
+        this.content = content;
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], User.prototype, "id", void 0);
+    ], Post.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "userName", void 0);
+    ], Post.prototype, "title", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "email", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "password", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "role", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "image", void 0);
-    User = __decorate([
+    ], Post.prototype, "content", void 0);
+    Post = __decorate([
         (0, typeorm_1.Entity)(),
-        __metadata("design:paramtypes", [String, String, String])
-    ], User);
-    return User;
+        __metadata("design:paramtypes", [String, String])
+    ], Post);
+    return Post;
 }());
-exports.User = User;
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=Post.js.map

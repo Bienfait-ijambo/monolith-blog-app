@@ -9,7 +9,7 @@ exports.requiredPropertyError = void 0;
  */
 var requiredPropertyError = function (property, name) {
     if (typeof property === 'undefined' || property === '')
-        throw new Error("Veuillez entre la ".concat(property, "  "));
+        throw new Error(" ".concat(name, "  is required "));
 };
 exports.requiredPropertyError = requiredPropertyError;
 //# sourceMappingURL=requiredProperty.js.map

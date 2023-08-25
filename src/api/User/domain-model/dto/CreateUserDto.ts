@@ -1,40 +1,42 @@
-import { Required } from "../../../../shared/validators/Required"
-import { User } from "../../repository/User"
-import { CreateUserInput } from "../usecases/interfaces/userInterfaces"
-import { CreateUserPwd } from "./CreateUserPwd"
-import { UserDto } from "./UserDto"
+import { User } from "../../repository/User";
+import { CreateUserInput } from "../usecases/interfaces/userInterfaces";
+import { CreateUserPwd } from "./CreateUserPwd";
 
-export enum UserRole{
-    ADMIN = "ADMIN",
-    VISITOR="VISITOR"
+export enum UserRole {
+  ADMIN = "ADMIN",
+  VISITOR = "VISITOR",
 }
 export class CreateUserDto {
+  private email: string;
 
+  private password: string;
 
+  private role: string;
 
-    private email:string
+  constructor(input: CreateUserInput) {
+    this.email = input.email;
+    this.password = input.password;
 
-    // @Required(6,8)
-    private password:string
+    if (this.isValidInput()) throw new Error('Enter email and password"');
+  }
 
-    // @Required(4,5)
-    private role:string
+  isValidInput(): boolean {
+    return this.email === "" || this.password === "" ? true : false;
+  }
 
+  async getInput(): Promise<User> {
+    if(!this.isValidEmail()) throw new Error('Invalid email adress');
+    const hashPwd = await CreateUserPwd.hashPassword(this.password);
+    return new User("", this.email, hashPwd, UserRole.VISITOR);
+  }
 
-    constructor(input:CreateUserInput){
-        this.email = input.email
-        this.password = input.password
-        this.role = input.role
-    }
+  isValidEmail(): boolean {
+    if (this.email.length > 50) return false;
 
-
-    async getInput():Promise<User>{
-
-        const hashPwd= await CreateUserPwd.hashPassword(this.password)
-
-        return new User('',this.email, hashPwd, UserRole.VISITOR)
-      
-    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid= emailRegex.test(this.email);
+    return isValid 
+  }
 
 
 }

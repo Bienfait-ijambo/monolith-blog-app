@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeFieldNameToFrench = exports.Required = void 0;
+exports.Required = void 0;
 var requiredProperty_1 = require("../errors/requiredProperty");
 function Required(min, max) {
     return function (target, propertyKey) {
@@ -13,7 +13,7 @@ function Required(min, max) {
             if (newValue.length >= min && newValue.length <= max) {
             }
             else {
-                throw new Error("".concat(changeFieldNameToFrench(propertyKey), "  doit \u00EAtre entre  ").concat(min, " et ").concat(max, " charact\u00E8res !!"));
+                throw new Error("This ".concat(propertyKey, "  doit \u00EAtre entre  ").concat(min, " et ").concat(max, " charact\u00E8res !!"));
             }
             value = newValue;
         };
@@ -26,15 +26,14 @@ function Required(min, max) {
     };
 }
 exports.Required = Required;
-function changeFieldNameToFrench(propery) {
-    switch (propery) {
-        case "name":
-            return "Nom";
-        case "designation":
-            return "Designation";
-        default:
-            return propery;
-    }
-}
-exports.changeFieldNameToFrench = changeFieldNameToFrench;
+// export function changeFieldNameToFrench(propery: string) {
+//   switch (propery) {
+//     case "name":
+//       return "Nom";
+//     case "designation":
+//       return "Designation";
+//     default:
+//       return propery;
+//   }
+// }
 //# sourceMappingURL=Required.js.map

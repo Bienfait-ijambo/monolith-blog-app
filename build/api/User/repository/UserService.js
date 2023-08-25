@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -38,21 +47,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userService = exports.UserService = void 0;
 var data_source_1 = require("../../../infrastructure/typeorm/data-source");
-var User_1 = require("../entity/User");
-var UserService = /** @class */ (function () {
+var User_1 = require("./User");
+var CatchError_1 = require("../../../shared/errors/CatchError");
+var UserService = exports.UserService = /** @class */ (function () {
     function UserService() {
     }
+    UserService.prototype.findUserByEmail = function (email) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(User_1.User)
+                            .createQueryBuilder("user")
+                            .where("user.email = :email", { email: email })
+                            .getOne()];
+                    case 1:
+                        user = _a.sent();
+                        return [2 /*return*/, user];
+                }
+            });
+        });
+    };
     UserService.prototype.CreateUser = function (input) {
         return __awaiter(this, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
-                result = data_source_1.AppDataSource.getRepository(User_1.User).save(input);
-                return [2 /*return*/, result];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(User_1.User).save(input)];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                }
             });
         });
     };
+    __decorate([
+        CatchError_1.catchError,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String]),
+        __metadata("design:returntype", Promise)
+    ], UserService.prototype, "findUserByEmail", null);
+    __decorate([
+        CatchError_1.catchError,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", Promise)
+    ], UserService.prototype, "CreateUser", null);
     return UserService;
 }());
-exports.UserService = UserService;
 exports.userService = new UserService();
 //# sourceMappingURL=UserService.js.map

@@ -4,14 +4,17 @@
 const bcrypt = require('bcrypt');
 export class CreateUserPwd{
 
- 
+  
+      /**
+       * min length of the password
+       */
+     private static min:number=6
+     /**
+      * max length of the password
+      */
+      private static max:number=8
     
-  /**
-   * 
-   * @param password {password provide by the user}
-   * @param hashPassword 
-   * @returns boolean
-   */
+  
     public static async verifyPassword(password:string,hashPassword:string) : Promise<boolean> {
   
       const isMatch = await bcrypt.compare(password,hashPassword);
@@ -20,27 +23,20 @@ export class CreateUserPwd{
     }
 
 
-    /**
-     * 
-     * @param password 
-     * @returns a hash password
-     */
+    
     public static async hashPassword(password:string)  : Promise<string>{
 
-      const pwdLenth:number=6
-
-      if(typeof password==='undefined' || password==='') throw new Error('Veuillez entre le mot de passe !')
-
-    //   if(password.length < pwdLenth)
-    //   throw new Error("Veuillez entre 8 charactères au minimum [Password] !");
-
-    //   if(!CreateUserPwd.isValidatePwd(password))
-    //   throw new Error('Pwd Invalide : [4 chiffres, 2 Lettre en majuscule, 2 Lettre en miniscule]');
-
-      
+      if(!CreateUserPwd.hasValidLength(password))
+       throw new Error("Password must be between 6 and 8 characters long !");
 
       const hash = await bcrypt.hash(password, 10);
       return hash;
+    }
+
+
+     static hasValidLength(password:string):boolean{
+      return (password.length >=CreateUserPwd.min && password.length<=CreateUserPwd.max) ? true : false;
+
     }
 
 

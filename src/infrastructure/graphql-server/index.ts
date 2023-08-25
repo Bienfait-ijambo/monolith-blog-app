@@ -9,7 +9,7 @@ import { initDbConnection } from "../typeorm";
 import { typeDefs } from "../../schema";
 import { resolvers } from "../../resolvers";
 import { handleGraphqlError } from "./exceptions/handleGraphqlError";
-import { connectToRedis, runTask } from "./testing";
+// import { connectToRedis, runTask } from "./testing";
 
 
 

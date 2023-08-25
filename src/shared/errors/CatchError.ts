@@ -8,7 +8,6 @@ export function catchError(target: any, propertyKey: string, descriptor: Propert
         return await originalMethod.apply(this, args);
       } catch (error) {
        await logErrorToFile(error,'app-error')
-        console.error(`An error occurred in ${propertyKey}:args:${args}`);
         
       }
     };

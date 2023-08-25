@@ -15,7 +15,7 @@ services:
       - APP_NAME=micro-blog-app
 
     deploy:
-      replicas: 1
+      replicas: 2
 
   postgres:
     image: postgres:14

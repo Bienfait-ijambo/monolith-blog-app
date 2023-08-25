@@ -27,6 +27,37 @@ mutation($input: CreateUserInput!){
 
 ```
 
+
+2. login user
+
+
+```graphql
+mutation($input: CreateUserInput!){
+  createUser(input: $input) {
+    email
+    role
+  }
+}
+
+{
+  "input": {
+    "email": "usi12852@gmail.com",
+    "password": "password"
+  }
+}
+
+```
+
+
+mutation loginUser($input: LoginInput!){
+  loginUser(input: $input) {
+    user {
+      id
+      email
+    }
+  }
+}
+
 # Post endpoints :
 
 1. post endpoint

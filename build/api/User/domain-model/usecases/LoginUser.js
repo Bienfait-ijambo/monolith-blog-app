@@ -36,17 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authMutations = void 0;
-exports.authMutations = {
-    Mutation: {
-        loginUser: function (root, _a) {
-            var input = _a.input;
-            return __awaiter(void 0, void 0, void 0, function () {
-                return __generator(this, function (_b) {
-                    return [2 /*return*/];
-                });
-            });
-        },
+exports.LoginUserUseCase = void 0;
+var createUserLoginDto_1 = require("../dto/createUserLoginDto");
+var LoginUserUseCase = /** @class */ (function () {
+    function LoginUserUseCase(repo) {
+        this.repo = repo;
+        this.repo = repo;
     }
-};
-//# sourceMappingURL=auth.mutation.js.map
+    LoginUserUseCase.prototype.execute = function (input) {
+        return __awaiter(this, void 0, void 0, function () {
+            var dto, user, isValidPwd;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        dto = new createUserLoginDto_1.CreateUserLoginDto(input);
+                        return [4 /*yield*/, this.repo.findUserByEmail(input.email)];
+                    case 1:
+                        user = _a.sent();
+                        if (!user)
+                            throw new Error('Email or password invalid');
+                        return [4 /*yield*/, dto.isValidPassword(input.password, user.password)];
+                    case 2:
+                        isValidPwd = _a.sent();
+                        if (!isValidPwd)
+                            throw new Error('Email or password invalid');
+                        return [2 /*return*/, { user: user }];
+                }
+            });
+        });
+    };
+    return LoginUserUseCase;
+}());
+exports.LoginUserUseCase = LoginUserUseCase;
+//# sourceMappingURL=LoginUser.js.map

@@ -38,8 +38,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userMutations = void 0;
 var CreateUser_1 = require("../../domain-model/usecases/CreateUser");
+var LoginUser_1 = require("../../domain-model/usecases/LoginUser");
 var UserService_1 = require("../../repository/UserService");
 exports.userMutations = {
+    loginUser: function (root, _a) {
+        var input = _a.input;
+        return __awaiter(void 0, void 0, void 0, function () {
+            var usecase, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        usecase = new LoginUser_1.LoginUserUseCase(UserService_1.userService);
+                        return [4 /*yield*/, usecase.execute(input)];
+                    case 1:
+                        result = _b.sent();
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    },
     createUser: function (root, _a) {
         var input = _a.input;
         return __awaiter(void 0, void 0, void 0, function () {

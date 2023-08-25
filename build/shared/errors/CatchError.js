@@ -58,7 +58,6 @@ function catchError(target, propertyKey, descriptor) {
                         return [4 /*yield*/, (0, logErrorToFile_1.logErrorToFile)(error_1, 'app-error')];
                     case 3:
                         _a.sent();
-                        console.error("An error occurred in ".concat(propertyKey, ":args:").concat(args));
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }

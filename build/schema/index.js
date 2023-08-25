@@ -122,15 +122,12 @@ function getTypeDeftsInProduction() {
                     if (!(stream_1_1 = _e.sent(), _a = stream_1_1.done, !_a)) return [3 /*break*/, 5];
                     _c = stream_1_1.value;
                     _d = false;
-                    try {
-                        chunk = _c;
-                        result += chunk;
-                    }
-                    finally {
-                        _d = true;
-                    }
+                    chunk = _c;
+                    result += chunk;
                     _e.label = 4;
-                case 4: return [3 /*break*/, 2];
+                case 4:
+                    _d = true;
+                    return [3 /*break*/, 2];
                 case 5: return [3 /*break*/, 12];
                 case 6:
                     e_1_1 = _e.sent();
@@ -156,11 +153,11 @@ function getTypeDeftsInProduction() {
 exports.getTypeDeftsInProduction = getTypeDeftsInProduction;
 function graphqlSchema() {
     //   if(process.env.NODE_ENV === 'production'){
-    var allSchema = (0, fs_1.readFileSync)(path.join(__dirname) + '/typedefs.txt', { encoding: 'utf-8' });
-    return [allSchema];
+    // const allSchema= readFileSync(path.join(__dirname)+'/typedefs.txt', { encoding: 'utf-8' })
+    // return [allSchema]
     //   }
     //   if(process.env.NODE_ENV==='development'){
-    // return returnTypeDefs()
+    return returnTypeDefs();
     //   }
 }
 exports.typeDefs = (0, merge_1.mergeTypeDefs)(graphqlSchema());

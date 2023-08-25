@@ -14,7 +14,7 @@ export function Required(min: number, max: number) {
       if (newValue.length >= min && newValue.length <= max) {
       } else {
         throw new Error(
-          `${changeFieldNameToFrench(propertyKey)}  doit être entre  ${min} et ${max} charactères !!`
+          `This ${propertyKey}  doit être entre  ${min} et ${max} charactères !!`
         );
       }
 
@@ -29,13 +29,13 @@ export function Required(min: number, max: number) {
   };
 }
 
-export function changeFieldNameToFrench(propery: string) {
-  switch (propery) {
-    case "name":
-      return "Nom";
-    case "designation":
-      return "Designation";
-    default:
-      return propery;
-  }
-}
+// export function changeFieldNameToFrench(propery: string) {
+//   switch (propery) {
+//     case "name":
+//       return "Nom";
+//     case "designation":
+//       return "Designation";
+//     default:
+//       return propery;
+//   }
+// }

@@ -7,4 +7,7 @@ export interface IUserRepo{
 
         
     CreateUser(input:CreateUserInput):Promise<User>
+
+
+    findUserByEmail(email:string): Promise<User>
 }

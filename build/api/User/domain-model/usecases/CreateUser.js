@@ -45,14 +45,21 @@ var CreateUserUseCase = /** @class */ (function () {
     }
     CreateUserUseCase.prototype.execute = function (input) {
         return __awaiter(this, void 0, void 0, function () {
-            var dto, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var dto, userData, emailExist, _a, userDataResult, emailResult, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         dto = new CreateUserDto_1.CreateUserDto(input);
-                        return [4 /*yield*/, this.repo.CreateUser(dto.getInput())];
+                        userData = dto.getInput();
+                        emailExist = this.repo.findUserByEmail(input.email);
+                        return [4 /*yield*/, Promise.all([userData, emailExist])];
                     case 1:
-                        result = _a.sent();
+                        _a = _b.sent(), userDataResult = _a[0], emailResult = _a[1];
+                        if (!!emailResult)
+                            throw new Error('This email is already been taken');
+                        return [4 /*yield*/, this.repo.CreateUser(userDataResult)];
+                    case 2:
+                        result = _b.sent();
                         return [2 /*return*/, result];
                 }
             });
