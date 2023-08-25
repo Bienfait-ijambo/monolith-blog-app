@@ -40,7 +40,7 @@ exports.CreateUserPwd = void 0;
 // import bcrypt from 'bcrypt'
 // import { requiredPropertyError } from '../../../../common/error/requiredProperty';
 var bcrypt = require('bcrypt');
-var CreateUserPwd = /** @class */ (function () {
+var CreateUserPwd = exports.CreateUserPwd = /** @class */ (function () {
     function CreateUserPwd() {
     }
     CreateUserPwd.verifyPassword = function (password, hashPassword) {
@@ -89,5 +89,4 @@ var CreateUserPwd = /** @class */ (function () {
     CreateUserPwd.max = 8;
     return CreateUserPwd;
 }());
-exports.CreateUserPwd = CreateUserPwd;
 //# sourceMappingURL=CreateUserPwd.js.map

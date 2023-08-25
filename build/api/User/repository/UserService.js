@@ -49,7 +49,7 @@ exports.userService = exports.UserService = void 0;
 var data_source_1 = require("../../../infrastructure/typeorm/data-source");
 var User_1 = require("./User");
 var CatchError_1 = require("../../../shared/errors/CatchError");
-var UserService = /** @class */ (function () {
+var UserService = exports.UserService = /** @class */ (function () {
     function UserService() {
     }
     UserService.prototype.findUserByEmail = function (email) {
@@ -119,6 +119,5 @@ var UserService = /** @class */ (function () {
     ], UserService.prototype, "updateUser", null);
     return UserService;
 }());
-exports.UserService = UserService;
 exports.userService = new UserService();
 //# sourceMappingURL=UserService.js.map

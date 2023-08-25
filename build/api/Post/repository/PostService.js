@@ -49,7 +49,7 @@ exports.postService = exports.PostService = void 0;
 var data_source_1 = require("../../../infrastructure/typeorm/data-source");
 var CatchError_1 = require("../../../shared/errors/CatchError");
 var Post_1 = require("./Post");
-var PostService = /** @class */ (function () {
+var PostService = exports.PostService = /** @class */ (function () {
     function PostService() {
     }
     PostService.prototype.CreatePost = function (input) {
@@ -95,6 +95,5 @@ var PostService = /** @class */ (function () {
     ], PostService.prototype, "GetPosts", null);
     return PostService;
 }());
-exports.PostService = PostService;
 exports.postService = new PostService();
 //# sourceMappingURL=PostService.js.map

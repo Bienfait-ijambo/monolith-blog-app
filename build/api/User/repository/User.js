@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 var typeorm_1 = require("typeorm");
-var User = /** @class */ (function () {
+var User = exports.User = /** @class */ (function () {
     function User(userName, email, password, role) {
         this.userName = userName;
         this.email = email;
@@ -50,5 +50,4 @@ var User = /** @class */ (function () {
     ], User);
     return User;
 }());
-exports.User = User;
 //# sourceMappingURL=User.js.map
