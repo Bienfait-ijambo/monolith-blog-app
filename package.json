@@ -12,7 +12,7 @@
     "dev": "nodemon ./build/infrastructure/graphql-server/index.js",
     "build-schema": "ts-node src/schema/buildSchema.ts",
     "test:unit": "tsc && node --test build/__tests__/unit/",
-    "app:run": "node  build/app.js",
+    "app:run": "npm install",
     "test:integration": "tsc && node --test build/__tests__/integration/",
     "test:all": "node --test  build/__tests__/"
 
