@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Post = void 0;
 var typeorm_1 = require("typeorm");
-var Post = exports.Post = /** @class */ (function () {
+var Post = /** @class */ (function () {
     function Post(title, content) {
         this.title = title;
         this.content = content;
@@ -34,4 +34,5 @@ var Post = exports.Post = /** @class */ (function () {
     ], Post);
     return Post;
 }());
+exports.Post = Post;
 //# sourceMappingURL=Post.js.map

@@ -122,12 +122,15 @@ function getTypeDeftsInProduction() {
                     if (!(stream_1_1 = _e.sent(), _a = stream_1_1.done, !_a)) return [3 /*break*/, 5];
                     _c = stream_1_1.value;
                     _d = false;
-                    chunk = _c;
-                    result += chunk;
+                    try {
+                        chunk = _c;
+                        result += chunk;
+                    }
+                    finally {
+                        _d = true;
+                    }
                     _e.label = 4;
-                case 4:
-                    _d = true;
-                    return [3 /*break*/, 2];
+                case 4: return [3 /*break*/, 2];
                 case 5: return [3 /*break*/, 12];
                 case 6:
                     e_1_1 = _e.sent();
