@@ -86,6 +86,7 @@ var bootApp = function () { return __awaiter(void 0, void 0, void 0, function ()
                         // : 
                         (0, default_1.ApolloServerPluginLandingPageLocalDefault)({ footer: false }),
                     ],
+                    introspection: true
                 });
                 return [4 /*yield*/, server.start()];
             case 1:
