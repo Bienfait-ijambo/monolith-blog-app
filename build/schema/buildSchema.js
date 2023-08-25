@@ -72,7 +72,7 @@ function checkFileExists(path) {
     return (0, fs_1.existsSync)(path);
 }
 function writeTypedefsToProduction() {
-    var filePath = "C:/xampp/htdocs/projects/graphQL-projects/apollo-server-4/build/schema/typedefs.txt";
+    var filePath = "C:/xampp/htdocs/projects/graphQL-projects/micro-blog-app/build/schema/typedefs.txt";
     if (checkFileExists(filePath)) {
         //clean file into build folder
         cleanTypeDefsFile(filePath);

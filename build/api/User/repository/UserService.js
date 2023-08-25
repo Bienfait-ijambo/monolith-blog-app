@@ -49,8 +49,7 @@ exports.userService = exports.UserService = void 0;
 var data_source_1 = require("../../../infrastructure/typeorm/data-source");
 var User_1 = require("./User");
 var CatchError_1 = require("../../../shared/errors/CatchError");
-var logErrorToFile_1 = require("../../../infrastructure/graphql-server/winston/logErrorToFile");
-var UserService = exports.UserService = /** @class */ (function () {
+var UserService = /** @class */ (function () {
     function UserService() {
     }
     UserService.prototype.findUserByEmail = function (email) {
@@ -95,9 +94,6 @@ var UserService = exports.UserService = /** @class */ (function () {
                             .execute()];
                     case 1:
                         result = _a.sent();
-                        return [4 /*yield*/, (0, logErrorToFile_1.logErrorToFile)(input, 'update-user')];
-                    case 2:
-                        _a.sent();
                         return [2 /*return*/, result ? true : false];
                 }
             });
@@ -123,5 +119,6 @@ var UserService = exports.UserService = /** @class */ (function () {
     ], UserService.prototype, "updateUser", null);
     return UserService;
 }());
+exports.UserService = UserService;
 exports.userService = new UserService();
 //# sourceMappingURL=UserService.js.map

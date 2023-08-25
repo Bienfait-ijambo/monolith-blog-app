@@ -36,6 +36,8 @@ type CreateUserLoginResponse{
 
 
 
+
+
 type AuthReturnType{
 
     user:CreateUserLoginResponse

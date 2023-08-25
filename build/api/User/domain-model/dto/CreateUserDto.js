@@ -43,7 +43,7 @@ var UserRole;
 (function (UserRole) {
     UserRole["ADMIN"] = "ADMIN";
     UserRole["VISITOR"] = "VISITOR";
-})(UserRole || (exports.UserRole = UserRole = {}));
+})(UserRole = exports.UserRole || (exports.UserRole = {}));
 var CreateUserDto = /** @class */ (function () {
     function CreateUserDto(input) {
         this.email = input.email;

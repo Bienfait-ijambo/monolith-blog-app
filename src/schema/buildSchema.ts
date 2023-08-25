@@ -17,7 +17,7 @@ function checkFileExists(path) {
 
 function writeTypedefsToProduction() {
 
-  const filePath = "C:/xampp/htdocs/projects/graphQL-projects/apollo-server-4/build/schema/typedefs.txt";
+  const filePath = "C:/xampp/htdocs/projects/graphQL-projects/micro-blog-app/build/schema/typedefs.txt";
 
   if (checkFileExists(filePath)) {
     //clean file into build folder

@@ -64,19 +64,18 @@ let result = '';
   }
   return result
 
-
 }
 
 
  function graphqlSchema():string[] {
 
 //   if(process.env.NODE_ENV === 'production'){
-    // const allSchema= readFileSync(path.join(__dirname)+'/typedefs.txt', { encoding: 'utf-8' })
-    // return [allSchema]
+    const allSchema= readFileSync(path.join(__dirname)+'/typedefs.txt', { encoding: 'utf-8' })
+    return [allSchema]
 //   }
 
 //   if(process.env.NODE_ENV==='development'){
-    return returnTypeDefs()
+    // return returnTypeDefs()
 //   }
 }
 
