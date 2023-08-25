@@ -62,6 +62,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var path = __importStar(require("path"));
 var _1 = require(".");
+var filePath = "C:/xampp/htdocs/projects/graphQL-projects/micro-blog-app/build/schema/typedefs.txt";
 function cleanTypeDefsFile(filePath) {
     (0, fs_1.writeFileSync)(filePath, "");
 }
@@ -72,7 +73,6 @@ function checkFileExists(path) {
     return (0, fs_1.existsSync)(path);
 }
 function writeTypedefsToProduction() {
-    var filePath = "C:/xampp/htdocs/projects/graphQL-projects/micro-blog-app/build/schema/typedefs.txt";
     if (checkFileExists(filePath)) {
         //clean file into build folder
         cleanTypeDefsFile(filePath);
@@ -91,7 +91,7 @@ var build = function () { return __awaiter(void 0, void 0, void 0, function () {
         switch (_a.label) {
             case 0: 
             //clean development file
-            return [4 /*yield*/, cleanTypeDefsFile(path.join(__dirname) + "/typedefs.txt")];
+            return [4 /*yield*/, cleanTypeDefsFile(filePath)];
             case 1:
                 //clean development file
                 _a.sent();
