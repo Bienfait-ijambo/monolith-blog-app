@@ -54,6 +54,7 @@ export const bootApp = async () => {
         // : 
         ApolloServerPluginLandingPageLocalDefault({ footer: false }),
     ],
+    introspection:true
   });
 
   await server.start();
