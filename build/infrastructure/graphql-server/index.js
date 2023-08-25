@@ -50,6 +50,8 @@ var typeorm_1 = require("../typeorm");
 var schema_2 = require("../../schema");
 var resolvers_1 = require("../../resolvers");
 var handleGraphqlError_1 = require("./exceptions/handleGraphqlError");
+// import { connectToRedis, runTask } from "./testing";
+var default_1 = require("@apollo/server/plugin/landingPage/default");
 var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.get("/api/v1/ready", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -73,7 +75,17 @@ var bootApp = function () { return __awaiter(void 0, void 0, void 0, function ()
                 httpServer = http_1.default.createServer(app);
                 server = new server_1.ApolloServer({
                     schema: schema,
-                    formatError: handleGraphqlError_1.handleGraphqlError
+                    formatError: handleGraphqlError_1.handleGraphqlError,
+                    plugins: [
+                        // Install a landing page plugin based on NODE_ENV
+                        // process.env.NODE_ENV === 'production'
+                        //   ? ApolloServerPluginLandingPageProductionDefault({
+                        //       graphRef: 'my-graph-id@my-graph-variant',
+                        //       footer: false,
+                        //     })
+                        // : 
+                        (0, default_1.ApolloServerPluginLandingPageLocalDefault)({ footer: false }),
+                    ],
                 });
                 return [4 /*yield*/, server.start()];
             case 1:

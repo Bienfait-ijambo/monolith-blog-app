@@ -11,7 +11,7 @@ import { resolvers } from "../../resolvers";
 import { handleGraphqlError } from "./exceptions/handleGraphqlError";
 // import { connectToRedis, runTask } from "./testing";
 
-
+import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default';
 
 interface MyContext {
   // You can optionally create a TS interface to set up types
@@ -43,7 +43,17 @@ export const bootApp = async () => {
 
   const server = new ApolloServer<MyContext>({
     schema,
-    formatError:handleGraphqlError
+    formatError:handleGraphqlError,
+    plugins: [
+      // Install a landing page plugin based on NODE_ENV
+      // process.env.NODE_ENV === 'production'
+      //   ? ApolloServerPluginLandingPageProductionDefault({
+      //       graphRef: 'my-graph-id@my-graph-variant',
+      //       footer: false,
+      //     })
+        // : 
+        ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+    ],
   });
 
   await server.start();
