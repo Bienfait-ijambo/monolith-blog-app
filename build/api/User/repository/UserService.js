@@ -49,6 +49,7 @@ exports.userService = exports.UserService = void 0;
 var data_source_1 = require("../../../infrastructure/typeorm/data-source");
 var User_1 = require("./User");
 var CatchError_1 = require("../../../shared/errors/CatchError");
+var logErrorToFile_1 = require("../../../infrastructure/graphql-server/winston/logErrorToFile");
 var UserService = exports.UserService = /** @class */ (function () {
     function UserService() {
     }
@@ -81,6 +82,27 @@ var UserService = exports.UserService = /** @class */ (function () {
             });
         });
     };
+    UserService.prototype.updateUser = function (input) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, data_source_1.AppDataSource
+                            .createQueryBuilder()
+                            .update(User_1.User)
+                            .set({ userName: input.userName })
+                            .where("id = :id", { id: input.id })
+                            .execute()];
+                    case 1:
+                        result = _a.sent();
+                        return [4 /*yield*/, (0, logErrorToFile_1.logErrorToFile)(input, 'update-user')];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, result ? true : false];
+                }
+            });
+        });
+    };
     __decorate([
         CatchError_1.catchError,
         __metadata("design:type", Function),
@@ -93,6 +115,12 @@ var UserService = exports.UserService = /** @class */ (function () {
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", Promise)
     ], UserService.prototype, "CreateUser", null);
+    __decorate([
+        CatchError_1.catchError,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", Promise)
+    ], UserService.prototype, "updateUser", null);
     return UserService;
 }());
 exports.userService = new UserService();

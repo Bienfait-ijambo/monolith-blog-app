@@ -11,7 +11,16 @@ type CreateUserResponse{
     email:String! 
     role:String! 
 }
+input UpdateUserInput{
+    id:Int!
+    userName:String! 
+}
+type CreateUpdateResponse{
+    success:Boolean!
+}
 type Mutation{
     createUser(input:CreateUserInput!): CreateUserResponse!
+    updateUser(input:UpdateUserInput!): CreateUpdateResponse!
+
 }
 

@@ -36,48 +36,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserDto = exports.UserRole = void 0;
-var User_1 = require("../../repository/User");
-var CreateUserPwd_1 = require("./CreateUserPwd");
-var UserRole;
-(function (UserRole) {
-    UserRole["ADMIN"] = "ADMIN";
-    UserRole["VISITOR"] = "VISITOR";
-})(UserRole || (exports.UserRole = UserRole = {}));
-var CreateUserDto = /** @class */ (function () {
-    function CreateUserDto(input) {
-        this.email = input.email;
-        this.password = input.password;
-        if (this.isValidInput())
-            throw new Error('Enter email and password');
+exports.UpdateUserUseCase = void 0;
+var CreateUpdateUserDto_1 = require("../dto/CreateUpdateUserDto");
+var UpdateUserUseCase = /** @class */ (function () {
+    function UpdateUserUseCase(repo) {
+        this.repo = repo;
+        this.repo = repo;
     }
-    CreateUserDto.prototype.isValidInput = function () {
-        return this.email === "" || this.password === "" ? true : false;
-    };
-    CreateUserDto.prototype.getInput = function () {
+    UpdateUserUseCase.prototype.execute = function (input) {
         return __awaiter(this, void 0, void 0, function () {
-            var hashPwd;
+            var dto, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!this.isValidEmail())
-                            throw new Error('Invalid email adress');
-                        return [4 /*yield*/, CreateUserPwd_1.CreateUserPwd.hashPassword(this.password)];
+                        dto = new CreateUpdateUserDto_1.CreateUpdateUserDto(input);
+                        return [4 /*yield*/, this.repo.updateUser(dto.getInput())];
                     case 1:
-                        hashPwd = _a.sent();
-                        return [2 /*return*/, new User_1.User("", this.email, hashPwd, UserRole.VISITOR)];
+                        result = _a.sent();
+                        return [2 /*return*/, result];
                 }
             });
         });
     };
-    CreateUserDto.prototype.isValidEmail = function () {
-        if (this.email.length > 50)
-            return false;
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        var isValid = emailRegex.test(this.email);
-        return isValid;
-    };
-    return CreateUserDto;
+    return UpdateUserUseCase;
 }());
-exports.CreateUserDto = CreateUserDto;
-//# sourceMappingURL=CreateUserDto.js.map
+exports.UpdateUserUseCase = UpdateUserUseCase;
+//# sourceMappingURL=UpdateUser.js.map

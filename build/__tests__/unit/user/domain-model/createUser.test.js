@@ -145,7 +145,7 @@ var CreateUserPwd_1 = require("../../../../api/User/domain-model/dto/CreateUserP
             case 3:
                 _a.sent();
                 return [4 /*yield*/, t.test("should return input to be passed to db", function (t) { return __awaiter(void 0, void 0, void 0, function () {
-                        var dto, input;
+                        var dto, input, validEmail;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
@@ -153,6 +153,8 @@ var CreateUserPwd_1 = require("../../../../api/User/domain-model/dto/CreateUserP
                                     return [4 /*yield*/, dto.getInput()];
                                 case 1:
                                     input = _a.sent();
+                                    validEmail = dto.isValidEmail();
+                                    node_assert_1.default.strictEqual(validEmail, true);
                                     node_assert_1.default.strictEqual(userInput.email, input.email);
                                     node_assert_1.default.strictEqual("", input.userName);
                                     node_assert_1.default.ok(input.password.length > 20, "user pwd has been hashed");

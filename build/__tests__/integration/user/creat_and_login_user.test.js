@@ -56,8 +56,9 @@ var typeorm_1 = require("../../../infrastructure/typeorm");
 var CreateUser_1 = require("../../../api/User/domain-model/usecases/CreateUser");
 var UserService_1 = require("../../../api/User/repository/UserService");
 var LoginUser_1 = require("../../../api/User/domain-model/usecases/LoginUser");
+var UpdateUser_1 = require("../../../api/User/domain-model/usecases/UpdateUser");
 (0, node_test_1.test)("createUser integration-test suite", function (t) { return __awaiter(void 0, void 0, void 0, function () {
-    var createUserUseCase, loginUseCase, random, userInput;
+    var createUserUseCase, loginUseCase, updateUserUseCase, random, userInput;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -69,6 +70,7 @@ var LoginUser_1 = require("../../../api/User/domain-model/usecases/LoginUser");
                 }); }); });
                 createUserUseCase = new CreateUser_1.CreateUserUseCase(UserService_1.userService);
                 loginUseCase = new LoginUser_1.LoginUserUseCase(UserService_1.userService);
+                updateUserUseCase = new UpdateUser_1.UpdateUserUseCase(UserService_1.userService);
                 random = Math.floor(Math.random() * 1000);
                 userInput = {
                     email: "usi1".concat(random, "2@gmail.com"),
@@ -163,6 +165,71 @@ var LoginUser_1 = require("../../../api/User/domain-model/usecases/LoginUser");
                         });
                     }); })];
             case 2:
+                _a.sent();
+                return [4 /*yield*/, t.test("Update user suite", function (t) { return __awaiter(void 0, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, t.test("update user", function () { return __awaiter(void 0, void 0, void 0, function () {
+                                        var result;
+                                        return __generator(this, function (_a) {
+                                            switch (_a.label) {
+                                                case 0: return [4 /*yield*/, updateUserUseCase.execute({
+                                                        id: 2,
+                                                        userName: "Ijambo"
+                                                    })];
+                                                case 1:
+                                                    result = _a.sent();
+                                                    node_assert_1.default.strictEqual(result, true);
+                                                    return [2 /*return*/];
+                                            }
+                                        });
+                                    }); })];
+                                case 1:
+                                    _a.sent();
+                                    return [4 /*yield*/, t.test("should throw error if invalid userName", function () { return __awaiter(void 0, void 0, void 0, function () {
+                                            return __generator(this, function (_a) {
+                                                node_assert_1.default.rejects(function () { return __awaiter(void 0, void 0, void 0, function () {
+                                                    return __generator(this, function (_a) {
+                                                        switch (_a.label) {
+                                                            case 0: return [4 /*yield*/, updateUserUseCase.execute({
+                                                                    id: 1,
+                                                                    userName: "nuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+                                                                })];
+                                                            case 1:
+                                                                _a.sent();
+                                                                return [2 /*return*/];
+                                                        }
+                                                    });
+                                                }); }, {
+                                                    name: "Error",
+                                                    message: 'Name must be between 3 and 10 characters'
+                                                });
+                                                node_assert_1.default.rejects(function () { return __awaiter(void 0, void 0, void 0, function () {
+                                                    return __generator(this, function (_a) {
+                                                        switch (_a.label) {
+                                                            case 0: return [4 /*yield*/, updateUserUseCase.execute({
+                                                                    id: 1,
+                                                                    userName: "y",
+                                                                })];
+                                                            case 1:
+                                                                _a.sent();
+                                                                return [2 /*return*/];
+                                                        }
+                                                    });
+                                                }); }, {
+                                                    name: "Error",
+                                                    message: 'Name must be between 3 and 10 characters'
+                                                });
+                                                return [2 /*return*/];
+                                            });
+                                        }); })];
+                                case 2:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })];
+            case 3:
                 _a.sent();
                 return [2 /*return*/];
         }

@@ -1,5 +1,6 @@
 import { CreateUserUseCase } from "../../domain-model/usecases/CreateUser";
 import { LoginUserUseCase } from "../../domain-model/usecases/LoginUser";
+import { UpdateUserUseCase } from "../../domain-model/usecases/UpdateUser";
 import { userService } from "../../repository/UserService";
 
 
@@ -17,6 +18,14 @@ export const userMutations = {
     return result
   },
 
+  updateUser: async (root, { input }) => {
+    const usecase = new UpdateUserUseCase(userService);
+    const result = await  usecase.execute(input);
+    return {success:result}
+  },
+
+
+  
   
 
 };

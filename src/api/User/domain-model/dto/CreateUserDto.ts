@@ -17,7 +17,7 @@ export class CreateUserDto {
     this.email = input.email;
     this.password = input.password;
 
-    if (this.isValidInput()) throw new Error('Enter email and password"');
+    if (this.isValidInput()) throw new Error('Enter email and password');
   }
 
   isValidInput(): boolean {

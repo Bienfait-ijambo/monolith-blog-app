@@ -3,6 +3,8 @@ import { CreateUserInput } from "../domain-model/usecases/interfaces/userInterfa
 import { User } from "./User";
 import { IUserRepo } from "./IUserRepo";
 import { catchError } from "../../../shared/errors/CatchError";
+import { updateUserInput } from "../domain-model/dto/CreateUpdateUserDto";
+import { logErrorToFile } from "../../../infrastructure/graphql-server/winston/logErrorToFile";
 
 export class UserService implements IUserRepo {
 
@@ -23,6 +25,21 @@ export class UserService implements IUserRepo {
     const result = await AppDataSource.getRepository(User).save(input);
     return result;
   }
+
+  @catchError
+  async updateUser(input: updateUserInput): Promise<boolean> {
+    const result=await AppDataSource
+    .createQueryBuilder()
+    .update(User)
+    .set({ userName: input.userName })
+    .where("id = :id", { id: input.id })
+    .execute()
+   
+   return result ? true : false
+  }
+
+
+  
 }
 
 export const userService = new UserService();

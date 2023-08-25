@@ -4,12 +4,15 @@ import { initDbConnection } from "../../../infrastructure/typeorm";
 import { CreateUserUseCase } from "../../../api/User/domain-model/usecases/CreateUser";
 import { userService } from "../../../api/User/repository/UserService";
 import { LoginUserUseCase } from "../../../api/User/domain-model/usecases/LoginUser";
+import { UpdateUserUseCase } from "../../../api/User/domain-model/usecases/UpdateUser";
 
 test("createUser integration-test suite", async (t) => {
   before(async () => await initDbConnection());
 
   const createUserUseCase = new CreateUserUseCase(userService);
   const loginUseCase = new LoginUserUseCase(userService);
+  const updateUserUseCase = new UpdateUserUseCase(userService);
+
 
   let random = Math.floor(Math.random() * 1000);
 
@@ -58,6 +61,42 @@ test("createUser integration-test suite", async (t) => {
         message:'Email or password invalid'
       });
     });
+
+  });
+
+
+  await t.test("Update user suite", async (t) => {
+
+    await t.test("update user", async () => {
+      const result= await updateUserUseCase.execute({
+        id:2,
+        userName:"Ijambo"
+      });
+      assert.strictEqual(result, true);
+    });
+
+    await t.test("should throw error if invalid userName", async () => {
+      assert.rejects(async () => {
+        await updateUserUseCase.execute({
+          id: 1,
+          userName: "nuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+        });
+      },{
+        name:"Error",
+        message:'Name must be between 3 and 10 characters'
+      });
+      assert.rejects(async () => {
+        await updateUserUseCase.execute({
+          id: 1,
+          userName: "y",
+        });
+      },{
+        name:"Error",
+        message:'Name must be between 3 and 10 characters'
+      });
+    });
+
+  
 
   });
 

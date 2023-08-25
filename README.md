@@ -49,14 +49,25 @@ mutation($input: CreateUserInput!){
 ```
 
 
-mutation loginUser($input: LoginInput!){
-  loginUser(input: $input) {
-    user {
-      id
-      email
-    }
+
+
+2. updateUser
+
+```graphql
+mutation updateUser($input: UpdateUserInput!){
+  updateUser(input: $input) {
+    success
   }
 }
+
+{
+  "input": {
+    "userName": "",
+    "id": 
+  }
+}
+
+```
 
 # Post endpoints :
 
