@@ -61,7 +61,7 @@ export const bootApp = async () => {
 
   app.use(
     "/graphql",
-    cors<cors.CorsRequest>({ origin: [] }),
+    cors<cors.CorsRequest>({ origin: ['http://localhost:5173'] }),
     // json(),
     expressMiddleware(server)
   );

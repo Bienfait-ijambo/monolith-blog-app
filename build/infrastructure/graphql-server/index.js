@@ -91,7 +91,7 @@ var bootApp = function () { return __awaiter(void 0, void 0, void 0, function ()
                 return [4 /*yield*/, server.start()];
             case 1:
                 _a.sent();
-                app.use("/graphql", (0, cors_1.default)({ origin: [] }), 
+                app.use("/graphql", (0, cors_1.default)({ origin: ['http://localhost:5173'] }), 
                 // json(),
                 (0, express4_1.expressMiddleware)(server));
                 return [4 /*yield*/, (0, typeorm_1.initDbConnection)()
