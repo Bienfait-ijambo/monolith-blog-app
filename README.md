@@ -11,7 +11,7 @@ The project has the following endpoint :
 
 
 ```graphql
-mutation($input: CreateUserInput!){
+mutation createUser($input: CreateUserInput!){
   createUser(input: $input) {
     email
     role
@@ -32,8 +32,8 @@ mutation($input: CreateUserInput!){
 
 
 ```graphql
-mutation($input: CreateUserInput!){
-  createUser(input: $input) {
+mutation loginUser($input: CreateUserInput!){
+  loginUser(input: $input) {
     email
     role
   }
@@ -53,6 +53,15 @@ mutation($input: CreateUserInput!){
 
 3. updateUser
 
+#### Response type
+success:boolean
+
+#### input
+input:{
+  userName:string
+  id:number
+}
+
 ```graphql
 mutation updateUser($input: UpdateUserInput!){
   updateUser(input: $input) {
@@ -63,7 +72,7 @@ mutation updateUser($input: UpdateUserInput!){
 {
   "input": {
     "userName": "",
-    "id": 
+    "id": 1
   }
 }
 
