@@ -32,10 +32,12 @@ mutation createUser($input: CreateUserInput!){
 
 
 ```graphql
-mutation loginUser($input: CreateUserInput!){
+mutation loginUser($input: LoginInput!){
   loginUser(input: $input) {
-    email
-    role
+    user {
+      id
+      email
+    }
   }
 }
 
