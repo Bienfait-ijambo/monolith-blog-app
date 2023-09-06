@@ -83,13 +83,22 @@ type Mutation{
 
 }
 
-
-type User{
-    id:Int!
-    userName:String
-    email:String!
+type User {
+  id: Int!
+  userName: String
+  email: String!
+}
+input SearchUserInput {
+  userName: String!
+  page: Int!
 }
 
-type Query{
-    getUsers: [User]!
+type CreateGetUserResponse{
+   users:[User!]!
+   count:Int!
+   totalPages:Int!
+
+}
+type Query {
+  getUsers(input: SearchUserInput!): CreateGetUserResponse!
 }

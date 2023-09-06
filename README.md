@@ -82,17 +82,38 @@ mutation updateUser($input: UpdateUserInput!){
 
 4. getUsers
 
-```graphql
-query getUsers{
-  getUsers {
-    id
-    userName
-    email
+```javascript
+query($input: SearchUserInput!){
+  getUsers(input: $input) {
+    users {
+      id
+      userName
+      email
+    }
   }
 }
 
+
+
 ```
 
+### Input
+
+```javascript{
+  "input": {
+    "userName": "",
+    "page": 1
+  }
+}
+```
+Note: icrement page number property to go to the next page, 
+like ``
+"input": {
+    "userName": "ben",
+    "page": 2
+  }
+}
+``
 
 
 

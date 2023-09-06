@@ -5,6 +5,7 @@ import { IUserRepo } from "./IUserRepo";
 import { catchError } from "../../../shared/errors/CatchError";
 import { updateUserInput } from "../domain-model/dto/CreateUpdateUserDto";
 import { logErrorToFile } from "../../../infrastructure/graphql-server/winston/logErrorToFile";
+import { ISearchUserInput } from "../domain-model/usecases/GetUsers";
 
 export class UserService implements IUserRepo {
 
@@ -40,13 +41,26 @@ export class UserService implements IUserRepo {
 
 
   @catchError
-  async getUsers(): Promise<User[]> {
-    const result = await AppDataSource
+  async getUsers(input:ISearchUserInput): Promise<{users:User[],count:number,totalPages:number}>  {
+
+    const PAGE_SIZE = 5;
+
+    const [users, count] = await AppDataSource
     .getRepository(User)
     .createQueryBuilder("user")
-    .getMany()
-   
-   return result 
+    .where("lower(user.userName) LIKE :name", { name: `%${input.userName.toLowerCase()}%`})
+  
+    .skip((input.page - 1) * PAGE_SIZE)
+    .take(PAGE_SIZE)
+    .getManyAndCount();
+
+
+    const totalPages=Math.ceil(count/PAGE_SIZE)
+
+
+    
+    return {users,count,totalPages}
+
   }
 
 

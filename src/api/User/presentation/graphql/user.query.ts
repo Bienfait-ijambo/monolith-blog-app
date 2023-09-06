@@ -5,8 +5,9 @@ export const userQueries = {
 
     getUsers: async (root, { input }) => {
         const usecase = new GetUsersUseCase(userService);
-        const result= await usecase.execute();
-       return result
+        const  { users, count, totalPages }= await usecase.execute(input);
+   
+        return { users, count, totalPages }; 
       },
     
   
