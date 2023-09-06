@@ -3,9 +3,17 @@ import { ISearchUserInput } from "../domain-model/usecases/GetUsers";
 import { CreateUserInput } from "../domain-model/usecases/interfaces/userInterfaces";
 import { User } from "./User";
 
-type PaginationParams={
 
+
+
+
+type PaginationParams<T>={
+count: T,
+totalPages: T
 }
+
+export type ApiPagination<K extends string,T>=K extends string ?Record<K,T>  & PaginationParams<number> :never 
+
 
 
 export interface IUserRepo{
@@ -19,7 +27,7 @@ export interface IUserRepo{
     updateUser(input: updateUserInput): Promise<boolean> 
 
     // getUsers(): Promise<User[]> 
-    getUsers(input:ISearchUserInput): Promise<{users:User[],count:number,totalPages:number}> 
+    getUsers(input:ISearchUserInput): Promise<ApiPagination<'users',User[]>> 
 
 
 
