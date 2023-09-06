@@ -99,18 +99,24 @@ var UserService = /** @class */ (function () {
             });
         });
     };
-    UserService.prototype.getUsers = function () {
+    UserService.prototype.getUsers = function (input) {
         return __awaiter(this, void 0, void 0, function () {
-            var result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, data_source_1.AppDataSource
-                            .getRepository(User_1.User)
-                            .createQueryBuilder("user")
-                            .getMany()];
+            var PAGE_SIZE, _a, users, count, totalPages;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        PAGE_SIZE = 5;
+                        return [4 /*yield*/, data_source_1.AppDataSource
+                                .getRepository(User_1.User)
+                                .createQueryBuilder("user")
+                                .where("lower(user.userName) LIKE :name", { name: "%".concat(input.userName.toLowerCase(), "%") })
+                                .skip((input.page - 1) * PAGE_SIZE)
+                                .take(PAGE_SIZE)
+                                .getManyAndCount()];
                     case 1:
-                        result = _a.sent();
-                        return [2 /*return*/, result];
+                        _a = _b.sent(), users = _a[0], count = _a[1];
+                        totalPages = Math.ceil(count / PAGE_SIZE);
+                        return [2 /*return*/, { users: users, count: count, totalPages: totalPages }];
                 }
             });
         });
@@ -136,7 +142,7 @@ var UserService = /** @class */ (function () {
     __decorate([
         CatchError_1.catchError,
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
+        __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", Promise)
     ], UserService.prototype, "getUsers", null);
     return UserService;

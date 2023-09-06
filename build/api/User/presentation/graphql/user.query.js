@@ -43,15 +43,15 @@ exports.userQueries = {
     getUsers: function (root, _a) {
         var input = _a.input;
         return __awaiter(void 0, void 0, void 0, function () {
-            var usecase, result;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var usecase, _b, users, count, totalPages;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         usecase = new GetUsers_1.GetUsersUseCase(UserService_1.userService);
-                        return [4 /*yield*/, usecase.execute()];
+                        return [4 /*yield*/, usecase.execute(input)];
                     case 1:
-                        result = _b.sent();
-                        return [2 /*return*/, result];
+                        _b = _c.sent(), users = _b.users, count = _b.count, totalPages = _b.totalPages;
+                        return [2 /*return*/, { users: users, count: count, totalPages: totalPages }];
                 }
             });
         });

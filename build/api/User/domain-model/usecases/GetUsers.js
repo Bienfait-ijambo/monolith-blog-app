@@ -42,12 +42,12 @@ var GetUsersUseCase = /** @class */ (function () {
         this.repo = repo;
         this.repo = repo;
     }
-    GetUsersUseCase.prototype.execute = function () {
+    GetUsersUseCase.prototype.execute = function (input) {
         return __awaiter(this, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.repo.getUsers()];
+                    case 0: return [4 /*yield*/, this.repo.getUsers(input)];
                     case 1:
                         result = _a.sent();
                         return [2 /*return*/, result];
