@@ -86,8 +86,7 @@ var UserService = /** @class */ (function () {
             var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, data_source_1.AppDataSource
-                            .createQueryBuilder()
+                    case 0: return [4 /*yield*/, data_source_1.AppDataSource.createQueryBuilder()
                             .update(User_1.User)
                             .set({ userName: input.userName })
                             .where("id = :id", { id: input.id })
@@ -106,10 +105,11 @@ var UserService = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         PAGE_SIZE = 5;
-                        return [4 /*yield*/, data_source_1.AppDataSource
-                                .getRepository(User_1.User)
+                        return [4 /*yield*/, data_source_1.AppDataSource.getRepository(User_1.User)
                                 .createQueryBuilder("user")
-                                .where("lower(user.userName) LIKE :name", { name: "%".concat(input.userName.toLowerCase(), "%") })
+                                .where("lower(user.userName) LIKE :name", {
+                                name: "%".concat(input.userName.toLowerCase(), "%"),
+                            })
                                 .skip((input.page - 1) * PAGE_SIZE)
                                 .take(PAGE_SIZE)
                                 .getManyAndCount()];
