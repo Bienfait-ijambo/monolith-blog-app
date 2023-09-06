@@ -106,7 +106,7 @@ query($input: SearchUserInput!){
   }
 }
 ```
-Note: icrement page number property to go to the next page, 
+Note: increment page number property to go to the next page, 
 like ``
 "input": {
     "userName": "ben",
