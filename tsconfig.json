@@ -6,13 +6,19 @@
        ],
        "target": "es5",
        "module": "commonjs",
-       "moduleResolution": "node",
+       
        "rootDir": "./src",
        "outDir": "./build",
        "emitDecoratorMetadata": true,
        "experimentalDecorators": true,
-       "allowSyntheticDefaultImports": true,
+       
+       /* module resolution */
        "esModuleInterop": true,
-       "sourceMap": true
-    }
+       "moduleResolution": "node",
+       "allowSyntheticDefaultImports": true,
+
+       "sourceMap": true,
+       
+    },
+    "include": ["src/**/*"]
  }

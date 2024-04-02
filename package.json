@@ -14,8 +14,8 @@
     "test:unit": "tsc && node --test build/__tests__/unit/",
     "app:run": "npm install",
     "test:integration": "tsc && node --test build/__tests__/integration/",
-    "test:all": "node --test  build/__tests__/"
-
+    "test:all": "node --test  build/__tests__/",
+    "codegen": "graphql-codegen --config src/codegen.yml"
   },
   "keywords": [],
   "author": "",
@@ -35,12 +35,18 @@
     "winston": "^3.10.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.0",
+    "@parcel/watcher": "^2.3.0",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.17",
     "@types/node": "^20.4.9",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-codegen/typescript-resolvers": "4.0.1",
+    "@graphql-codegen/typescript-document-nodes": "4.0.1",
+    "@graphql-codegen/introspection": "4.0.0"
   }
 }

@@ -1,0 +1,78 @@
+type AuthReturnType {
+  user: CreateUserLoginResponse
+}
+
+type CreateGetUserResponse {
+  count: Int!
+  totalPages: Int!
+  users: [User!]!
+}
+
+input CreatePostInput {
+  content: String!
+  title: String!
+}
+
+type CreatePostResponse {
+  content: String!
+  id: ID!
+  title: String!
+}
+
+type CreateUpdateResponse {
+  success: Boolean!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+}
+
+type CreateUserLoginResponse {
+  email: String
+  id: Int
+}
+
+type CreateUserResponse {
+  email: String!
+  id: ID!
+  role: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResponse!
+  createUser(input: CreateUserInput!): CreateUserResponse!
+  loginUser(input: LoginInput!): AuthReturnType
+  updateUser(input: UpdateUserInput!): CreateUpdateResponse!
+}
+
+type Query {
+  getUsers(input: SearchUserInput!): CreateGetUserResponse!
+  posts: [CreatePostResponse]
+}
+
+input SearchUserInput {
+  page: Int!
+  userName: String!
+}
+
+type Tokens {
+  accessToken: String
+  refreshToken: String
+}
+
+input UpdateUserInput {
+  id: Int!
+  userName: String!
+}
+
+type User {
+  email: String!
+  id: Int!
+  userName: String
+}
